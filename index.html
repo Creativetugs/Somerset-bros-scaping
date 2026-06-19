@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somerset Bros Scaping | Professional Lawn Care & Exterior Cleaning</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        stone: {
+                            900: '#1c1917',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #16a34a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #15803d;
+        }
+
+        /* Glassmorphism nav active state */
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* Interactive clip slider components */
+        .slider-container {
+            position: relative;
+            user-select: none;
+            overflow: hidden;
+        }
+        .slider-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-before {
+            z-index: 10;
+        }
+        .slider-after {
+            z-index: 5;
+        }
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #ffffff;
+            z-index: 20;
+            cursor: ew-resize;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #16a34a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            pointer-events: none;
+            transition: background-color 0.2s;
+        }
+        .slider-container:hover .slider-button {
+            background-color: #15803d;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased overflow-x-hidden">
+
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex items-center justify-between bg-white/90 backdrop-blur-md px-6 py-3.5 rounded-full shadow-lg border border-stone-100 transition-all duration-300">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center space-x-2 group">
+                <div class="bg-brand-600 text-white p-2 rounded-full flex items-center justify-center shadow-md shadow-brand-200 transition-transform group-hover:scale-105 duration-300">
+                    <i class="fa-solid fa-leaf text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-stone-900 tracking-tight text-lg leading-tight md:text-xl">Somerset Bros</span>
+                    <span class="text-[10px] text-brand-600 font-bold uppercase tracking-widest leading-none">Scaping</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden lg:flex items-center space-x-8">
+                <a href="#home" class="text-stone-600 hover:text-brand-600 font-medium text-sm transition-colors duration-200">Home</a>
+                <a href="#about" class="text-stone-600 hover:text-brand-600 font-medium text-sm transition-colors duration-200">About Us</a>
+                <a href="#services" class="text-stone-600 hover:text-brand-600 font-medium text-sm transition-colors duration-200">Services</a>
+                <a href="#pricing" class="text-stone-600 hover:text-brand-600 font-medium text-sm transition-colors duration-200">Pricing</a>
+                <a href="#gallery" class="text-stone-600 hover:text-brand-600 font-medium text-sm transition-colors duration-200">Gallery</a>
+                <a href="#why-choose-us" class="text-stone-600 hover:text-brand-600 font-medium text-sm transition-colors duration-200">Why Choose Us</a>
+            </nav>
+
+            <!-- Call Out CTAs -->
+            <div class="hidden sm:flex items-center space-x-4">
+                <a href="tel:606-341-5093" class="flex items-center gap-2 bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold px-4 py-2 rounded-full text-sm transition-all duration-200 animate-pulse">
+                    <i class="fa-solid fa-phone text-brand-600"></i>
+                    <span>606-341-5093</span>
+                </a>
+                <button onclick="toggleModal('quote-modal')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-2 rounded-full text-sm shadow-md shadow-brand-100 transition-all duration-200 hover:-translate-y-0.5">
+                    Free Estimate
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Toggle Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-stone-700 focus:outline-none p-1.5 hover:bg-stone-100 rounded-lg transition-colors" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Sidebar Drawer -->
+        <div id="mobile-drawer" class="fixed inset-y-0 right-0 w-72 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col p-6 lg:hidden">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-brand-600 text-white p-1.5 rounded-full">
+                        <i class="fa-solid fa-leaf text-sm"></i>
+                    </div>
+                    <span class="font-extrabold text-stone-900 text-lg">Somerset Bros</span>
+                </div>
+                <button id="close-drawer-btn" class="text-stone-500 hover:text-stone-800 focus:outline-none p-1 rounded-full hover:bg-stone-100">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <nav class="flex flex-col space-y-4 mb-auto">
+                <a href="#home" class="mobile-nav-link text-stone-700 hover:text-brand-600 font-semibold text-base py-2 transition-colors">Home</a>
+                <a href="#about" class="mobile-nav-link text-stone-700 hover:text-brand-600 font-semibold text-base py-2 transition-colors">About Us</a>
+                <a href="#services" class="mobile-nav-link text-stone-700 hover:text-brand-600 font-semibold text-base py-2 transition-colors">Services</a>
+                <a href="#pricing" class="mobile-nav-link text-stone-700 hover:text-brand-600 font-semibold text-base py-2 transition-colors">Pricing</a>
+                <a href="#gallery" class="mobile-nav-link text-stone-700 hover:text-brand-600 font-semibold text-base py-2 transition-colors">Gallery</a>
+                <a href="#why-choose-us" class="mobile-nav-link text-stone-700 hover:text-brand-600 font-semibold text-base py-2 transition-colors">Why Choose Us</a>
+                <a href="#contact" class="mobile-nav-link text-stone-700 hover:text-brand-600 font-semibold text-base py-2 transition-colors">Contact</a>
+            </nav>
+
+            <div class="mt-8 border-t border-stone-100 pt-6 space-y-4">
+                <a href="tel:606-341-5093" class="flex items-center justify-center gap-2 bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold py-3 rounded-xl transition-all">
+                    <i class="fa-solid fa-phone text-brand-600"></i>
+                    <span>Call: 606-341-5093</span>
+                </a>
+                <button onclick="toggleModal('quote-modal')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 rounded-xl shadow-md transition-all">
+                    Request Free Estimate
+                </button>
+            </div>
+        </div>
+        <!-- Drawer Backdrop Overlay -->
+        <div id="drawer-overlay" class="fixed inset-0 bg-black/40 z-40 hidden transition-opacity duration-300"></div>
+    </header>
+
+    <section id="home" class="relative pt-28 pb-16 lg:pt-36 lg:pb-28 overflow-hidden bg-gradient-to-br from-brand-50 via-white to-green-50/50">
+        <!-- SVG Decorative Background Elements -->
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
+            <svg class="absolute -top-12 -left-12 text-brand-500 w-96 h-96" fill="currentColor" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="1" fill="none" stroke-dasharray="5 5" />
+            </svg>
+            <div class="absolute right-10 bottom-10 w-80 h-80 bg-brand-100 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-brand-100 text-brand-800 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                        <span class="flex h-2 w-2 rounded-full bg-brand-600 animate-pulse"></span>
+                        <span>Now Booking for the Season!</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight leading-tight">
+                        Professional Lawn Care & <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-green-800">Exterior Cleaning</span>
+                    </h1>
+
+                    <p class="text-lg text-stone-600 max-w-2xl mx-auto lg:mx-0">
+                        Keep your yard looking clean, healthy, and beautiful with reliable local service you can trust. 
+                        From lawn mowing and weed removal to pressure washing and gutter cleaning — Somerset Bros Scaping helps keep your property in top shape at affordable prices.
+                    </p>
+
+                    <!-- Trust Icons Checklist Grid (Using Custom Styled Branded Checkmarks) -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 max-w-xl mx-auto lg:mx-0 text-left">
+                        <div class="flex items-center space-x-2 bg-white p-3 rounded-xl border border-stone-100 shadow-sm">
+                            <i class="fa-solid fa-circle-check text-brand-600 text-lg"></i>
+                            <span class="font-semibold text-stone-700 text-sm">Affordable Rates</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white p-3 rounded-xl border border-stone-100 shadow-sm">
+                            <i class="fa-solid fa-circle-check text-brand-600 text-lg"></i>
+                            <span class="font-semibold text-stone-700 text-sm">Fast & Reliable</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white p-3 rounded-xl border border-stone-100 shadow-sm">
+                            <i class="fa-solid fa-circle-check text-brand-600 text-lg"></i>
+                            <span class="font-semibold text-stone-700 text-sm">Residential</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white p-3 rounded-xl border border-stone-100 shadow-sm">
+                            <i class="fa-solid fa-circle-check text-brand-600 text-lg"></i>
+                            <span class="font-semibold text-stone-700 text-sm">Free Estimates</span>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-6">
+                        <button onclick="toggleModal('quote-modal')" class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-brand-100 transition-all duration-200 hover:-translate-y-1">
+                            <span>Get a Free Quote</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <a href="tel:606-341-5093" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-stone-50 text-stone-800 border-2 border-stone-200 hover:border-brand-600 font-bold px-8 py-4 rounded-full transition-all duration-200 hover:-translate-y-1">
+                            <i class="fa-solid fa-phone text-brand-600"></i>
+                            <span>Call Us Today</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column Media Content -->
+                <div class="lg:col-span-5 relative mt-8 lg:mt-0">
+                    <div class="relative mx-auto max-w-[450px] aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1533460004989-cef01064af7e?auto=format&fit=crop&q=80&w=800" alt="Beautifully manicured green residential lawn" class="w-full h-full object-cover">
+                        <!-- Bottom left glass overlay badge -->
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/40 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-brand-100 text-brand-700 p-2.5 rounded-xl">
+                                    <i class="fa-solid fa-star text-brand-600 text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-extrabold text-stone-900 text-sm leading-none">Highly Rated Local Pros</h4>
+                                    <p class="text-[11px] text-stone-500 mt-1 font-medium">Serving Somerset & Surrounding Areas</p>
+                                </div>
+                            </div>
+                            <span class="bg-brand-600 text-white text-[11px] font-bold px-2 py-1 rounded-md">5.0 Star Rated</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 bg-white border-y border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Image Collage Frame -->
+                <div class="grid grid-cols-2 gap-4 relative">
+                    <div class="space-y-4">
+                        <div class="rounded-2xl overflow-hidden shadow-md aspect-square">
+                            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&q=80&w=500" alt="Lawn care service materials and setup" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="bg-brand-900 text-white p-6 rounded-2xl flex flex-col justify-center shadow-lg aspect-[4/3]">
+                            <span class="text-3xl font-bold tracking-tight">100%</span>
+                            <span class="text-sm font-medium text-brand-100 mt-1">Satisfaction-Focused Local Service</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-8">
+                        <div class="bg-brand-50 border border-brand-100 p-6 rounded-2xl flex flex-col justify-center shadow-sm aspect-[4/3]">
+                            <span class="text-stone-900 font-extrabold text-2xl">Kentucky Proud</span>
+                            <p class="text-xs text-stone-600 mt-2">Dedicated to keeping homes and outdoor spaces beautifully managed.</p>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden shadow-md aspect-square">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=500" alt="Pristine residential exterior environment" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text content -->
+                <div class="space-y-6">
+                    <div class="inline-block bg-brand-50 text-brand-700 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                        Who We Are
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 tracking-tight leading-tight">
+                        Your Local Lawn Care & <br>Exterior Maintenance Experts
+                    </h2>
+                    <p class="text-stone-600 text-base leading-relaxed">
+                        At <strong class="text-stone-900">Somerset Bros Scaping</strong>, we take pride in helping homeowners maintain beautiful lawns and clean outdoor spaces. Whether it’s regular mowing, trimming, or exterior cleaning, we focus on quality work, fair pricing, and dependable service.
+                    </p>
+                    <p class="text-stone-600 text-base leading-relaxed">
+                        We believe every yard deserves personal attention and elite care, and we’re fully committed to making your property look its best. No hidden fees, no unreliable timelines—just genuine, hard-working professionals.
+                    </p>
+
+                    <!-- Key highlights -->
+                    <div class="grid sm:grid-cols-2 gap-4 border-t border-stone-100 pt-6">
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-brand-100 text-brand-600 p-2 rounded-lg mt-0.5">
+                                <i class="fa-solid fa-users text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Reliable Neighbors</h4>
+                                <p class="text-xs text-stone-500 mt-0.5">Locally owned, locally operated, deeply committed to Somerset.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-brand-100 text-brand-600 p-2 rounded-lg mt-0.5">
+                                <i class="fa-solid fa-handshake text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Honest Pricing</h4>
+                                <p class="text-xs text-stone-500 mt-0.5">Clear flat pricing structures. No sudden surprise costs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-16 md:py-24 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <div class="inline-block bg-brand-50 text-brand-700 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                    Our Services
+                </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 tracking-tight">
+                    Premium Lawn & Exterior Care
+                </h2>
+                <p class="text-stone-600 text-sm md:text-base">
+                    Whether you need ongoing scheduled maintenance or a deep one-time cleanup, we have you covered with professional-grade services.
+                </p>
+            </div>
+
+            <!-- Services Grid Split by Category -->
+            <div class="grid lg:grid-cols-2 gap-12">
+                
+                <!-- Category 1: Lawn & Yard Maintenance -->
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-3 border-b border-stone-200 pb-3">
+                        <div class="bg-brand-600 text-white w-10 h-10 rounded-xl flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-seedling text-lg"></i>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-stone-900">Lawn & Yard Maintenance</h3>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <!-- Card 1: Lawn Mowing -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md hover:border-brand-500/20 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-brand-50 text-brand-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-brand-100">
+                                    <i class="fa-solid fa-seedling text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-stone-900 text-base mb-1.5">Lawn Mowing</h4>
+                                <p class="text-xs text-stone-500 leading-relaxed">Professional mowing scheduled weekly or bi-weekly to keep your grass neat and healthy.</p>
+                            </div>
+                            <span class="text-brand-700 text-xs font-semibold mt-4 block">Starts at $5 – $10+</span>
+                        </div>
+
+                        <!-- Card 2: Weed-Eating -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md hover:border-brand-500/20 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-brand-50 text-brand-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-brand-100">
+                                    <i class="fa-solid fa-scissors text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-stone-900 text-base mb-1.5">Weed-Eating & Weeding</h4>
+                                <p class="text-xs text-stone-500 leading-relaxed">Comprehensive clipping and edging to clear unwanted weeds and keep your lawn boundary clean.</p>
+                            </div>
+                            <span class="text-brand-700 text-xs font-semibold mt-4 block">Starts at $5 – $10+</span>
+                        </div>
+
+                        <!-- Card 3: Flower Bed Weeding -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md hover:border-brand-500/20 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-brand-50 text-brand-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-brand-100">
+                                    <i class="fa-solid fa-spa text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-stone-900 text-base mb-1.5">Flower Bed Weeding</h4>
+                                <p class="text-xs text-stone-500 leading-relaxed">Maintain gorgeous, clean, and eye-catching flower beds by removing stubborn roots and debris.</p>
+                            </div>
+                            <span class="text-brand-700 text-xs font-semibold mt-4 block">Starts at $5 – $10+</span>
+                        </div>
+
+                        <!-- Card 4: Bush Trimming & Cleanup -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md hover:border-brand-500/20 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-brand-50 text-brand-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-brand-100">
+                                    <i class="fa-solid fa-leaf text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-stone-900 text-base mb-1.5">Bush & Flower Trimming</h4>
+                                <p class="text-xs text-stone-500 leading-relaxed">Carefully shape, scale, and prune shrubs, hedges, and flower bushes for a beautiful look.</p>
+                            </div>
+                            <span class="text-brand-700 text-xs font-semibold mt-4 block">Starts at $5 – $10+</span>
+                        </div>
+                    </div>
+
+                    <!-- Highlight Card: Yard Cleanup -->
+                    <div class="bg-brand-900 text-white p-5 rounded-2xl flex items-center justify-between shadow-md">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-brand-800 text-brand-300 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border border-brand-700">
+                                <i class="fa-solid fa-broom text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Quick Yard Cleanup</h4>
+                                <p class="text-[11px] text-brand-100">Quick debris, leaf, and twig removal to refresh your visual landscaping.</p>
+                            </div>
+                        </div>
+                        <span class="bg-brand-600 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shrink-0">Only $5 Flat</span>
+                    </div>
+                </div>
+
+                <!-- Category 2: Home Exterior Services -->
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-3 border-b border-stone-200 pb-3">
+                        <div class="bg-brand-600 text-white w-10 h-10 rounded-xl flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-house-chimney text-lg"></i>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-stone-900">Home Exterior Services</h3>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <!-- Card 5: Pressure Washing -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md hover:border-brand-500/20 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-brand-50 text-brand-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-brand-100">
+                                    <i class="fa-solid fa-droplet text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-stone-900 text-base mb-1.5">Pressure Washing</h4>
+                                <p class="text-xs text-stone-500 leading-relaxed">Blast away dirt, mold, and stains from driveways, patios, siding, and walkways.</p>
+                            </div>
+                            <span class="text-brand-700 text-xs font-semibold mt-4 block">Call for Free Estimate</span>
+                        </div>
+
+                        <!-- Card 6: Window Cleaning -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md hover:border-brand-500/20 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-brand-50 text-brand-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-brand-100">
+                                    <i class="fa-solid fa-border-all text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-stone-900 text-base mb-1.5">Window Cleaning</h4>
+                                <p class="text-xs text-stone-500 leading-relaxed">Brighten up your living space inside and out with crystal-clear, streak-free home window treatments.</p>
+                            </div>
+                            <span class="text-brand-700 text-xs font-semibold mt-4 block">Call for Free Estimate</span>
+                        </div>
+
+                        <!-- Card 7: Gutter Cleaning -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md hover:border-brand-500/20 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-brand-50 text-brand-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-brand-100">
+                                    <i class="fa-solid fa-trowel text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-stone-900 text-base mb-1.5">Gutter Cleaning</h4>
+                                <p class="text-xs text-stone-500 leading-relaxed">Clear dead leaves and debris to prevent blockages, pest nests, and costly water damage.</p>
+                            </div>
+                            <span class="text-brand-700 text-xs font-semibold mt-4 block">Starts at $10 – $20</span>
+                        </div>
+
+                        <!-- Card 8: Exterior Power Package -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md hover:border-brand-500/20 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-brand-50 text-brand-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4 border border-brand-100">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-stone-900 text-base mb-1.5">Exterior Power Package</h4>
+                                <p class="text-xs text-stone-500 leading-relaxed">Get our premium pressure washing and streak-free window cleaning done together to save big.</p>
+                            </div>
+                            <span class="text-brand-700 text-xs font-semibold mt-4 block">Save with Bundle Rates</span>
+                        </div>
+                    </div>
+
+                    <!-- Custom Requests Block -->
+                    <div class="bg-stone-900 text-white p-6 rounded-3xl relative overflow-hidden flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-brand-500 uppercase tracking-widest font-extrabold block mb-1">Custom Requests?</span>
+                            <h4 class="font-extrabold text-white text-lg">Need something else done?</h4>
+                            <p class="text-xs text-stone-400 mt-1 max-w-sm">Reach out to our friendly crew—we often accommodate customized cleaning and hauling projects.</p>
+                        </div>
+                        <a href="tel:606-341-5093" class="bg-brand-600 hover:bg-brand-700 text-white p-3.5 rounded-full shadow-lg transition-transform hover:scale-105 duration-200 shrink-0 flex items-center justify-center">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <div class="inline-block bg-brand-50 text-brand-700 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                    Our Rates
+                </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 tracking-tight">
+                    Affordable & Transparent Pricing
+                </h2>
+                <p class="text-stone-600 text-sm md:text-base">
+                    Find fair, competitive pricing below. Use our interactive estimator to quickly map out your service plan in seconds.
+                </p>
+            </div>
+
+            <!-- Pricing Tables Grid Layout -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Lawn Care Rates Card -->
+                <div class="bg-stone-50 border border-stone-200 rounded-3xl p-6 md:p-8">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="bg-brand-100 text-brand-700 p-2.5 rounded-xl">
+                            <i class="fa-solid fa-seedling text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-stone-900">Lawn Mowing & Weeding Rates</h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Subtable 1 -->
+                        <div>
+                            <h4 class="text-xs font-bold text-brand-700 uppercase tracking-wider mb-2">Lawn Mowing</h4>
+                            <div class="bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-sm divide-y divide-stone-100">
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <span class="font-medium text-stone-600">Small Yard Mowing</span>
+                                    <span class="font-bold text-stone-950">$5 – $10</span>
+                                </div>
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <span class="font-medium text-stone-600">Medium Yard Mowing</span>
+                                    <span class="font-bold text-stone-950">$20 – $25</span>
+                                </div>
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <span class="font-medium text-stone-600">Large Yard Mowing</span>
+                                    <span class="font-bold text-stone-950">$30 – $40</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subtable 2 -->
+                        <div>
+                            <h4 class="text-xs font-bold text-brand-700 uppercase tracking-wider mb-2 mt-4">Weed-Eating & Weeding</h4>
+                            <div class="bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-sm divide-y divide-stone-100">
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <span class="font-medium text-stone-600">Small Lawns Edging</span>
+                                    <span class="font-bold text-stone-950">$5 – $10</span>
+                                </div>
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <span class="font-medium text-stone-600">Medium Lawns Edging</span>
+                                    <span class="font-bold text-stone-950">$15 – $20</span>
+                                </div>
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <span class="font-medium text-stone-600">Large Lawns Edging</span>
+                                    <span class="font-bold text-stone-950">$20 – $25</span>
+                                </div>
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <span class="font-medium text-stone-600">Flower Bed Weeding</span>
+                                    <span class="font-bold text-stone-950">$5 – $10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trimming & Cleanup Rates Card -->
+                <div class="bg-stone-50 border border-stone-200 rounded-3xl p-6 md:p-8">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="bg-brand-100 text-brand-700 p-2.5 rounded-xl">
+                            <i class="fa-solid fa-broom text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-stone-900">Trimming & Exterior Services</h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Subtable 1 -->
+                        <div>
+                            <h4 class="text-xs font-bold text-brand-700 uppercase tracking-wider mb-2">Trimming & Cleanup</h4>
+                            <div class="bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-sm divide-y divide-stone-100">
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <span class="font-medium text-stone-600">Bush & Flower Trimming</span>
+                                    <span class="font-bold text-stone-950">$5 – $10</span>
+                                </div>
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <span class="font-medium text-stone-600">Yard Cleanup (Debris removal)</span>
+                                    <span class="font-bold text-stone-950">$5 <span class="text-xs text-stone-400 font-normal">Flat</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subtable 2 -->
+                        <div>
+                            <h4 class="text-xs font-bold text-brand-700 uppercase tracking-wider mb-2 mt-4">Exterior Cleaning</h4>
+                            <div class="bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-sm divide-y divide-stone-100">
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <div>
+                                        <span class="font-medium text-stone-600 block">Pressure Washing + Window Combo</span>
+                                        <span class="text-[10px] text-stone-400 block">Full residential sparkle package</span>
+                                    </div>
+                                    <span class="font-bold text-stone-950">$30 – $40</span>
+                                </div>
+                                <div class="flex justify-between p-3.5 text-sm">
+                                    <span class="font-medium text-stone-600">Gutter Cleaning</span>
+                                    <span class="font-bold text-stone-950">$10 – $20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-stone-500 text-xs mt-6 italic">
+                        * Prices may vary slightly depending on property size and structural conditions. Reach out for a precise, finalized estimate.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactive Estimator Panel -->
+            <div class="bg-brand-900 text-white rounded-3xl p-6 md:p-10 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-16 -top-16 w-48 h-48 bg-brand-800 rounded-full blur-2xl opacity-50"></div>
+                <div class="absolute -left-16 -bottom-16 w-48 h-48 bg-brand-600 rounded-full blur-2xl opacity-40"></div>
+
+                <div class="relative z-10 grid lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Left column -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="inline-flex items-center gap-1.5 bg-brand-800 text-brand-200 px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Instant Calculator</span>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Estimate Your Project Costs</h3>
+                        <p class="text-brand-100 text-sm leading-relaxed">
+                            Pick your estimated property metrics and toggle your required lawn services below to calculate a dynamic budget projection immediately.
+                        </p>
+                    </div>
+
+                    <!-- Right column inputs & output -->
+                    <div class="lg:col-span-7 bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/10 grid md:grid-cols-2 gap-6">
+                        <!-- Inputs -->
+                        <div class="space-y-4">
+                            <div>
+                                <label for="est-yard-size" class="block text-xs font-bold text-brand-200 uppercase tracking-wider mb-2">1. Select Lawn Size</label>
+                                <select id="est-yard-size" class="w-full bg-brand-800/80 border border-brand-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                    <option value="small" selected>Small Yard (e.g. Townhouse / Front Only)</option>
+                                    <option value="medium">Medium Yard (Standard Residential)</option>
+                                    <option value="large">Large Yard (Large Residential / Corner Lot)</option>
+                                </select>
+                            </div>
+
+                            <div class="space-y-2">
+                                <span class="block text-xs font-bold text-brand-200 uppercase tracking-wider mb-2">2. Check Needed Services</span>
+                                
+                                <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                    <input type="checkbox" id="calc-mow" class="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 focus:ring-2 bg-brand-800 border-brand-700" checked>
+                                    <span class="text-sm text-white font-medium">Lawn Mowing</span>
+                                </label>
+                                
+                                <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                    <input type="checkbox" id="calc-weed" class="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 focus:ring-2 bg-brand-800 border-brand-700">
+                                    <span class="text-sm text-white font-medium">Weed-Eating / Weeding</span>
+                                </label>
+
+                                <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                    <input type="checkbox" id="calc-flower" class="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 focus:ring-2 bg-brand-800 border-brand-700">
+                                    <span class="text-sm text-white font-medium">Flower Bed Weeding</span>
+                                </label>
+
+                                <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                    <input type="checkbox" id="calc-trim" class="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 focus:ring-2 bg-brand-800 border-brand-700">
+                                    <span class="text-sm text-white font-medium">Bush & Flower Trimming</span>
+                                </label>
+
+                                <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                    <input type="checkbox" id="calc-cleanup" class="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 focus:ring-2 bg-brand-800 border-brand-700">
+                                    <span class="text-sm text-white font-medium">Yard Cleanup</span>
+                                </label>
+
+                                <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                    <input type="checkbox" id="calc-exterior" class="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 focus:ring-2 bg-brand-800 border-brand-700">
+                                    <span class="text-sm text-white font-medium">Pressure Wash + Window</span>
+                                </label>
+
+                                <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                    <input type="checkbox" id="calc-gutters" class="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 focus:ring-2 bg-brand-800 border-brand-700">
+                                    <span class="text-sm text-white font-medium">Gutter Cleaning</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Outputs Box -->
+                        <div class="bg-brand-950/40 border border-white/5 rounded-xl p-6 flex flex-col justify-between text-center">
+                            <span class="text-[11px] text-brand-300 font-bold uppercase tracking-wider block">Estimated Price Range</span>
+                            
+                            <div class="my-6">
+                                <span id="calc-price-output" class="text-4xl md:text-5xl font-extrabold text-brand-500 block">$5 - $10</span>
+                                <span class="text-[10px] text-brand-300 mt-2 block italic">Based on Somerset Bros custom standard rates</span>
+                            </div>
+
+                            <button onclick="toggleModal('quote-modal')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-4 rounded-xl shadow-md text-sm transition-colors mt-auto">
+                                Request This Job
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-16 md:py-24 bg-stone-50 border-y border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <div class="inline-block bg-brand-50 text-brand-700 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                    Our Work Gallery
+                </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 tracking-tight">
+                    Proof in Every Lawn & Surface
+                </h2>
+                <p class="text-stone-600 text-sm md:text-base">
+                    Take a look at some of our recent lawn care and exterior cleaning projects. Slide back and forth to inspect our professional execution and transformations.
+                </p>
+            </div>
+
+            <!-- Interactive Before/After Comparison Hero Component -->
+            <div class="grid lg:grid-cols-12 gap-8 items-center mb-16">
+                <!-- Left text side -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-brand-100 text-brand-800 px-3 py-1 rounded-full text-xs font-semibold">
+                        <i class="fa-solid fa-arrows-left-right"></i>
+                        <span>Drag the slider in the image!</span>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-stone-900 leading-tight">Interactive Transformation Showcase</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Drag the slider to preview the Somerset Bros difference. On the left, you can view the unruly state—and on the right, our perfectly clean, trimmed finish.
+                    </p>
+                    <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-stone-100 shadow-sm">
+                        <div class="bg-brand-50 text-brand-600 w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <p class="text-xs text-stone-500">We tidy every edge, blow clean all adjacent pavements, and leave the driveway clear of any debris.</p>
+                    </div>
+                </div>
+
+                <!-- Right Slider Container -->
+                <div class="lg:col-span-7">
+                    <!-- Image Wrapper -->
+                    <div class="slider-container rounded-3xl shadow-xl border border-stone-200 aspect-[16/10] w-full" id="ba-lawn-slider">
+                        <!-- Before Container (Clipped) -->
+                        <div class="slider-img slider-before" id="slider-before-img" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+                            <img src="https://images.unsplash.com/photo-1533460004989-cef01064af7e?auto=format&fit=crop&q=80&w=800" alt="Untidy Lawn Before Care" class="w-full h-full object-cover filter grayscale brightness-75 contrast-125">
+                            <span class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Before</span>
+                        </div>
+                        
+                        <!-- After Container (Full view underneath) -->
+                        <div class="slider-img slider-after">
+                            <img src="https://images.unsplash.com/photo-1533460004989-cef01064af7e?auto=format&fit=crop&q=80&w=800" alt="Beautifully Trimmed Lawn After Care" class="w-full h-full object-cover">
+                            <span class="absolute top-4 right-4 bg-brand-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">After Somerset Bros</span>
+                        </div>
+
+                        <!-- Handles -->
+                        <div class="slider-handle" id="slider-drag-handle" style="left: 50%;">
+                            <div class="slider-button">
+                                <i class="fa-solid fa-arrows-left-right text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Standard Gallery Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Gallery Item 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-stone-100 flex flex-col justify-between">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1533460004989-cef01064af7e?auto=format&fit=crop&q=80&w=500" alt="Mowing transformation" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-brand-600 text-white text-[11px] font-bold px-2 py-1 rounded-md">Lawn Mowing</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-stone-900 text-sm">Weekly Mow & Edge</h4>
+                        <p class="text-[11px] text-stone-500 mt-1">Impeccable neat lines and weed-eating done along the fence border.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-stone-100 flex flex-col justify-between">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1528150206408-07a3f3025282?auto=format&fit=crop&q=80&w=500" alt="Weed cleanup" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-brand-600 text-white text-[11px] font-bold px-2 py-1 rounded-md">Weed Cleanup</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-stone-900 text-sm">Flower Bed Overhaul</h4>
+                        <p class="text-[11px] text-stone-500 mt-1">Deep root-weeding, soil aeration, and mulch borders defined perfectly.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-stone-100 flex flex-col justify-between">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&q=80&w=500" alt="Bush trimming" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-brand-600 text-white text-[11px] font-bold px-2 py-1 rounded-md">Bush Trimming</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-stone-900 text-sm">Hedge & Bush Sculpting</h4>
+                        <p class="text-[11px] text-stone-500 mt-1">Restored symmetry and healthy breathing clearance for perimeter hedge.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-stone-100 flex flex-col justify-between">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1528150206408-07a3f3025282?auto=format&fit=crop&q=80&w=500" alt="Pressure Washing" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-brand-600 text-white text-[11px] font-bold px-2 py-1 rounded-md">Pressure Washing</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-stone-900 text-sm">Concrete Driveway Wash</h4>
+                        <p class="text-[11px] text-stone-500 mt-1">Cleared 5 years of stubborn mold, dark mud, and deep moss growth.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-stone-100 flex flex-col justify-between">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=500" alt="Gutter cleaning" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-brand-600 text-white text-[11px] font-bold px-2 py-1 rounded-md">Gutter Cleaning</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-stone-900 text-sm">Full Gutter Tidy</h4>
+                        <p class="text-[11px] text-stone-500 mt-1">Cleared damp blockages, flushed downspouts, and restored optimal flow.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-stone-100 flex flex-col justify-between">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1533460004989-cef01064af7e?auto=format&fit=crop&q=80&w=500" alt="Yard cleanup transformations" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-brand-600 text-white text-[11px] font-bold px-2 py-1 rounded-md">Yard Cleanup</span>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold text-stone-900 text-sm">Spring Cleanup Overhaul</h4>
+                        <p class="text-[11px] text-stone-500 mt-1">Cleared dead branches, leaves, and overgrowth, restoring instant charm.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="why-choose-us" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Details Grid -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="space-y-4">
+                        <div class="inline-block bg-brand-50 text-brand-700 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                            Our Commitment
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 tracking-tight leading-tight">
+                            Why Homeowners Choose Somerset Bros Scaping
+                        </h2>
+                        <p class="text-stone-600 text-sm md:text-base">
+                            We treat every single yard like it’s our own. We value your time, home, and trust, delivering high-level services that leave standard landscaping companies in the dust.
+                        </p>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <!-- Key point 1 -->
+                        <div class="flex items-start space-x-3.5">
+                            <div class="bg-brand-50 text-brand-600 p-2.5 rounded-2xl shrink-0">
+                                <i class="fa-solid fa-dollar-sign text-base"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-base">Affordable & Honest Pricing</h4>
+                                <p class="text-xs text-stone-500 mt-1">Clear rates without high up-charges. True neighborly prices.</p>
+                            </div>
+                        </div>
+
+                        <!-- Key point 2 -->
+                        <div class="flex items-start space-x-3.5">
+                            <div class="bg-brand-50 text-brand-600 p-2.5 rounded-2xl shrink-0">
+                                <i class="fa-solid fa-face-smile text-base"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-base">Friendly & Dependable</h4>
+                                <p class="text-xs text-stone-500 mt-1">Courteous professionals who show up on time and clean up correctly.</p>
+                            </div>
+                        </div>
+
+                        <!-- Key point 3 -->
+                        <div class="flex items-start space-x-3.5">
+                            <div class="bg-brand-50 text-brand-600 p-2.5 rounded-2xl shrink-0">
+                                <i class="fa-solid fa-magnifying-glass text-base"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-base">Attention to Detail</h4>
+                                <p class="text-xs text-stone-500 mt-1">We don't miss patches or edge lines. Crisp trim and spotless clean paths.</p>
+                            </div>
+                        </div>
+
+                        <!-- Key point 4 -->
+                        <div class="flex items-start space-x-3.5">
+                            <div class="bg-brand-50 text-brand-600 p-2.5 rounded-2xl shrink-0">
+                                <i class="fa-solid fa-bolt text-base"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-base">Quick Response Times</h4>
+                                <p class="text-xs text-stone-500 mt-1">No ghosting. We return calls and messages swiftly to get you booked.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Branded Quote block replacing custom handshakes/emojis -->
+                    <div class="bg-brand-50 border border-brand-100 p-5 rounded-3xl flex items-center gap-4">
+                        <div class="bg-brand-100 text-brand-700 w-12 h-12 rounded-2xl flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-quote-left text-lg"></i>
+                        </div>
+                        <p class="text-xs font-semibold text-brand-800 leading-relaxed">
+                            "We believe a beautiful lawn is the key backdrop to beautiful family memories. That is why we treat every yard as if it belonged to our own brothers."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column Box Design -->
+                <div class="lg:col-span-5 relative mt-8 lg:mt-0">
+                    <div class="relative bg-gradient-to-br from-brand-900 to-green-950 text-white rounded-3xl p-8 shadow-2xl overflow-hidden flex flex-col justify-between aspect-square">
+                        <!-- BG Light -->
+                        <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-brand-600 rounded-full blur-3xl opacity-30"></div>
+                        
+                        <div class="relative z-10 space-y-4">
+                            <span class="text-brand-500 text-xs font-bold uppercase tracking-widest block">Local & Trusted</span>
+                            <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight">The Somerset Bros Standard</h3>
+                            <p class="text-xs text-brand-100 leading-relaxed">
+                                We reside right here in Somerset, KY. Supporting our team means supporting Kentucky families and promoting green communities!
+                            </p>
+                        </div>
+
+                        <!-- Mini stats stack -->
+                        <div class="relative z-10 border-t border-brand-800 pt-6 mt-6 grid grid-cols-2 gap-4">
+                            <div>
+                                <span class="text-2xl md:text-3xl font-extrabold text-brand-500 block">100%</span>
+                                <span class="text-[10px] text-brand-300 uppercase font-bold">Local Pride</span>
+                            </div>
+                            <div>
+                                <span class="text-2xl md:text-3xl font-extrabold text-brand-500 block">Fast</span>
+                                <span class="text-[10px] text-brand-300 uppercase font-bold">Scheduling turnaround</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-stone-50 border-t border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <div class="inline-block bg-brand-50 text-brand-700 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                    Our Reviews
+                </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 tracking-tight">
+                    What Our Customers Say
+                </h2>
+                <p class="text-stone-600 text-sm md:text-base">
+                    Read real feedback directly from homeowners around Somerset who trust our crew year-round.
+                </p>
+            </div>
+
+            <!-- Testimonial Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Review 1 -->
+                <div class="bg-white p-6 md:p-8 rounded-3xl border border-stone-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <!-- Stars (No generic text or emojis - formatted SVG icons) -->
+                        <div class="flex space-x-1 text-amber-500 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-stone-600 text-sm italic leading-relaxed">
+                            "Fast, affordable, and did a great job on my yard. My property was an absolute jungle after the spring rains, but they had it neat and pristine in no time. Highly recommend!"
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 border-t border-stone-100 pt-5 mt-6">
+                        <div class="bg-stone-100 text-brand-600 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm">
+                            MH
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-stone-900 text-xs">Marcus H.</h4>
+                            <p class="text-[10px] text-stone-500 font-medium">Somerset Resident</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-6 md:p-8 rounded-3xl border border-stone-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <!-- Stars -->
+                        <div class="flex space-x-1 text-amber-500 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-stone-600 text-sm italic leading-relaxed">
+                            "They cleaned my gutters and pressure washed my driveway — everything looked amazing. The difference was night and day. Fair pricing and fantastic communication."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 border-t border-stone-100 pt-5 mt-6">
+                        <div class="bg-stone-100 text-brand-600 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm">
+                            DB
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-stone-900 text-xs">Deborah B.</h4>
+                            <p class="text-[10px] text-stone-500 font-medium">Somerset Resident</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-6 md:p-8 rounded-3xl border border-stone-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <!-- Stars -->
+                        <div class="flex space-x-1 text-amber-500 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-stone-600 text-sm italic leading-relaxed">
+                            "Very professional and easy to work with. They set up a bi-weekly lawn mowing schedule that is completely hassle-free. Plus, their pricing fits my monthly budget perfectly."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 border-t border-stone-100 pt-5 mt-6">
+                        <div class="bg-stone-100 text-brand-600 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm">
+                            JR
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-stone-900 text-xs">James R.</h4>
+                            <p class="text-[10px] text-stone-500 font-medium">Somerset Resident</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="relative py-20 overflow-hidden bg-brand-900 text-white">
+        <!-- SVG Overlays -->
+        <div class="absolute inset-0 pointer-events-none opacity-10">
+            <svg class="absolute bottom-0 right-0 w-[500px] h-[500px]" fill="currentColor" viewBox="0 0 100 100">
+                <path d="M0,100 C20,80 40,80 60,100 C80,80 100,80 100,100 Z" stroke="none" fill="currentColor"/>
+            </svg>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 space-y-8">
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">
+                Ready to Clean Up Your Yard?
+            </h2>
+            <p class="text-brand-100 text-base md:text-lg max-w-2xl mx-auto">
+                Let Somerset Bros Scaping handle the heavy lifting so you can kick back and enjoy a clean, beautiful property all season long.
+            </p>
+
+            <div class="bg-brand-950/50 backdrop-blur-md p-6 md:p-8 rounded-3xl inline-flex flex-col sm:flex-row items-center justify-center gap-6 border border-brand-800 shadow-2xl">
+                <div class="text-center sm:text-left">
+                    <span class="text-[11px] text-brand-300 font-bold uppercase tracking-widest block mb-1">Call for a free estimate</span>
+                    <a href="tel:606-341-5093" class="text-2xl md:text-3xl font-extrabold text-white hover:text-brand-300 transition-colors block leading-tight">
+                        606-341-5093
+                    </a>
+                </div>
+                <div class="h-px w-16 sm:h-12 sm:w-px bg-brand-800"></div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a href="tel:606-341-5093" class="bg-white hover:bg-stone-50 text-stone-900 font-extrabold px-6 py-3 rounded-xl transition-all shadow-md text-sm">
+                        <i class="fa-solid fa-phone text-brand-600 mr-2"></i> Call Now
+                    </a>
+                    <button onclick="toggleModal('quote-modal')" class="bg-brand-600 hover:bg-brand-700 text-white font-extrabold px-6 py-3 rounded-xl transition-all shadow-md text-sm border border-brand-500">
+                        Get Estimate Form
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-stone-950 text-stone-400 pt-16 pb-8 border-t border-stone-900">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid md:grid-cols-4 gap-8 mb-12">
+            
+            <!-- Col 1: Brand details -->
+            <div class="md:col-span-2 space-y-4">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-brand-600 text-white p-2 rounded-full">
+                        <i class="fa-solid fa-leaf text-sm"></i>
+                    </div>
+                    <span class="font-extrabold text-white text-xl">Somerset Bros Scaping</span>
+                </div>
+                <p class="text-xs text-stone-500 leading-relaxed max-w-sm">
+                    Professional, high-standard lawn care and exterior cleaning services based right here in Somerset, Kentucky. We offer friendly, neighborly support with rates designed for real budget structures.
+                </p>
+                <div class="flex space-x-4 pt-2">
+                    <a href="tel:606-341-5093" class="hover:text-white transition-colors"><i class="fa-solid fa-phone"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Col 2: Services Quick Links -->
+            <div class="space-y-4">
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider">Our Services</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#services" class="hover:text-white transition-colors">Lawn Mowing & Maintenance</a></li>
+                    <li><a href="#services" class="hover:text-white transition-colors">Weed-Eating & Edging</a></li>
+                    <li><a href="#services" class="hover:text-white transition-colors">Bush & Flower Trimming</a></li>
+                    <li><a href="#services" class="hover:text-white transition-colors">Pressure Washing</a></li>
+                    <li><a href="#services" class="hover:text-white transition-colors">Gutter & Window Cleaning</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Contact & Area Info -->
+            <div class="space-y-4">
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider">Contact Info</h4>
+                <ul class="space-y-2 text-xs">
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-brand-600"></i>
+                        <a href="tel:606-341-5093" class="hover:text-white transition-colors">606-341-5093</a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot text-brand-600"></i>
+                        <span>Somerset, KY & surrounds</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-clock text-brand-600"></i>
+                        <span>Mon - Sat: 7:00 AM - 7:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Copyright bar -->
+        <div class="max-w-7xl mx-auto px-4 md:px-8 pt-8 border-t border-stone-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-stone-600">
+            <p>© 2026 Somerset Bros Scaping. All Rights Reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#home" class="hover:text-stone-400">Back to Top</a>
+                <a href="#pricing" class="hover:text-stone-400">Rates</a>
+                <a href="#about" class="hover:text-stone-400">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Estimate Modal Popup Panel -->
+    <div id="quote-modal" class="fixed inset-0 z-50 items-center justify-center hidden p-4">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="toggleModal('quote-modal')"></div>
+        <div class="bg-white rounded-3xl w-full max-w-xl relative z-10 overflow-hidden shadow-2xl border border-stone-100 flex flex-col">
+            
+            <!-- Modal Header -->
+            <div class="bg-brand-900 text-white p-6 relative">
+                <h3 class="text-xl font-bold">Request a Free Estimate</h3>
+                <p class="text-xs text-brand-200 mt-1">Fill out the fast form below and we will touch base within 24 hours.</p>
+                <button onclick="toggleModal('quote-modal')" class="absolute top-6 right-6 text-brand-200 hover:text-white focus:outline-none">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Form -->
+            <form id="quote-form" class="p-6 space-y-4" onsubmit="handleFormSubmit(event)">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5" for="form-name">Full Name *</label>
+                        <input type="text" id="form-name" required class="w-full border border-stone-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5" for="form-phone">Phone Number *</label>
+                        <input type="tel" id="form-phone" required class="w-full border border-stone-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" placeholder="606-341-5093">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5" for="form-address">Property Address</label>
+                    <input type="text" id="form-address" class="w-full border border-stone-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" placeholder="123 Somerset Lane, KY">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5" for="form-size">Estimated Yard Size</label>
+                        <select id="form-size" class="w-full border border-stone-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                            <option value="small">Small Yard</option>
+                            <option value="medium">Medium Yard</option>
+                            <option value="large">Large Yard</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5" for="form-service">Primary Service</label>
+                        <select id="form-service" class="w-full border border-stone-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                            <option value="mow">Lawn Mowing</option>
+                            <option value="weeds">Weeding & Edging</option>
+                            <option value="clean">Yard Cleanup</option>
+                            <option value="exterior">Pressure Washing / Window</option>
+                            <option value="gutters">Gutter Cleaning</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5" for="form-notes">Additional Details (Optional)</label>
+                    <textarea id="form-notes" rows="3" class="w-full border border-stone-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" placeholder="Let us know any specific spots or request variables..."></textarea>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2">
+                        <span>Send Free Estimate Request</span>
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Feedback Toast Notice -->
+    <div id="success-toast" class="fixed bottom-6 right-6 bg-stone-900 text-white px-6 py-4 rounded-2xl shadow-2xl border border-brand-500/30 z-50 flex items-center gap-3 translate-y-24 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-brand-600 text-white p-2 rounded-xl flex items-center justify-center">
+            <i class="fa-solid fa-circle-check text-lg"></i>
+        </div>
+        <div>
+            <h4 class="font-extrabold text-white text-sm">Request Submitted!</h4>
+            <p class="text-[11px] text-stone-400 mt-0.5">We will call or text you shortly with your estimate.</p>
+        </div>
+    </div>
+
+    <script>
+        // Sticky Header Color shift on Scroll
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('py-2');
+                header.classList.remove('py-4');
+                header.querySelector('.max-w-7xl').classList.add('nav-scrolled');
+            } else {
+                header.classList.add('py-4');
+                header.classList.remove('py-2');
+                header.querySelector('.max-w-7xl').classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile Nav Drawer Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeDrawerBtn = document.getElementById('close-drawer-btn');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function toggleDrawer(isOpen) {
+            if (isOpen) {
+                mobileDrawer.classList.remove('translate-x-full');
+                drawerOverlay.classList.remove('hidden');
+                setTimeout(() => drawerOverlay.classList.remove('opacity-0'), 10);
+            } else {
+                mobileDrawer.classList.add('translate-x-full');
+                drawerOverlay.classList.add('opacity-0');
+                setTimeout(() => drawerOverlay.classList.add('hidden'), 300);
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', () => toggleDrawer(true));
+        closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+        drawerOverlay.addEventListener('click', () => toggleDrawer(false));
+        mobileNavLinks.forEach(link => link.addEventListener('click', () => toggleDrawer(false)));
+
+        // Modal Utility
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        // Quote Form Submission Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            // Close the estimate modal
+            toggleModal('quote-modal');
+            // Trigger the success toast simulation
+            const toast = document.getElementById('success-toast');
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+            // Reset the form
+            document.getElementById('quote-form').reset();
+            // Close toast after 5 seconds
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+            }, 5000);
+        }
+
+        // Interactive Pricing Estimator Calculation Logic
+        const yardSizeSelect = document.getElementById('est-yard-size');
+        const calcMow = document.getElementById('calc-mow');
+        const calcWeed = document.getElementById('calc-weed');
+        const calcFlower = document.getElementById('calc-flower');
+        const calcTrim = document.getElementById('calc-trim');
+        const calcCleanup = document.getElementById('calc-cleanup');
+        const calcExterior = document.getElementById('calc-exterior');
+        const calcGutters = document.getElementById('calc-gutters');
+        const priceOutput = document.getElementById('calc-price-output');
+
+        function runCostCalculation() {
+            const size = yardSizeSelect.value;
+            let minTotal = 0;
+            let maxTotal = 0;
+
+            // Lawn Mowing calculation rules
+            if (calcMow.checked) {
+                if (size === 'small') { minTotal += 5; maxTotal += 10; }
+                else if (size === 'medium') { minTotal += 20; maxTotal += 25; }
+                else if (size === 'large') { minTotal += 30; maxTotal += 40; }
+            }
+
+            // Weed Eating calculation rules
+            if (calcWeed.checked) {
+                if (size === 'small') { minTotal += 5; maxTotal += 10; }
+                else if (size === 'medium') { minTotal += 15; maxTotal += 20; }
+                else if (size === 'large') { minTotal += 20; maxTotal += 25; }
+            }
+
+            // Flower Bed Weeding rules
+            if (calcFlower.checked) {
+                minTotal += 5; maxTotal += 10;
+            }
+
+            // Bush/Flower Trimming rules
+            if (calcTrim.checked) {
+                minTotal += 5; maxTotal += 10;
+            }
+
+            // Yard Cleanup flat rate
+            if (calcCleanup.checked) {
+                minTotal += 5; maxTotal += 5;
+            }
+
+            // Pressure wash + Window package rules
+            if (calcExterior.checked) {
+                minTotal += 30; maxTotal += 40;
+            }
+
+            // Gutter Cleaning rules
+            if (calcGutters.checked) {
+                minTotal += 10; maxTotal += 20;
+            }
+
+            // Render calculations output
+            if (minTotal === 0 && maxTotal === 0) {
+                priceOutput.textContent = "$0";
+            } else if (minTotal === maxTotal) {
+                priceOutput.textContent = `$${minTotal}`;
+            } else {
+                priceOutput.textContent = `$${minTotal} - $${maxTotal}`;
+            }
+        }
+
+        // Attach listeners for dynamic calculation updates
+        [yardSizeSelect, calcMow, calcWeed, calcFlower, calcTrim, calcCleanup, calcExterior, calcGutters].forEach(el => {
+            el.addEventListener('change', runCostCalculation);
+        });
+
+        // Initialize calc on page load
+        runCostCalculation();
+
+        // Interactive Before/After Comparison Image Slider Logic
+        const slider = document.getElementById('ba-lawn-slider');
+        const beforeImg = document.getElementById('slider-before-img');
+        const dragHandle = document.getElementById('slider-drag-handle');
+
+        let isDragging = false;
+
+        function updateSlider(clientX) {
+            const rect = slider.getBoundingClientRect();
+            // Calculate absolute x offset ratio inside slider container bounds
+            const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+            const percentage = (x / rect.width) * 100;
+            
+            // Adjust clip path polygon for front image overlay
+            beforeImg.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+            // Position divider line handle
+            dragHandle.style.left = `${percentage}%`;
+        }
+
+        // Mouse & Touch events for the Slider
+        slider.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            updateSlider(e.clientX);
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            updateSlider(e.clientX);
+        });
+
+        // Support mobile touchscreen drag events
+        slider.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            if (e.touches[0]) updateSlider(e.touches[0].clientX);
+        });
+
+        window.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            if (e.touches[0]) updateSlider(e.touches[0].clientX);
+        });
+    </script>
+</body>
+</html>
